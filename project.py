@@ -1,4 +1,8 @@
 import time
+import csv
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 myworld=["fortuna" , "windrise" , "aigis"]
 myworld2=["windrise", "aigis"]
 myworld4=["fortuna", "aigis"]
@@ -7,9 +11,9 @@ world=["fortuna"]
 world2=["windrise"]
 world3=["aigis"]
 invent=[]
-a=input("what is your name..?  ")
+A=input("what is your name..?  ")
 time.sleep(3)
-x = input ("hello there , would you like to play a game " +str(a) +"?     ")
+x = input ("hello there , would you like to play a game " +str(A) +"?     ")
 
 time.sleep(2)
 if x == "no":
@@ -242,4 +246,40 @@ else :
                                                       with open ("end.txt") as file:
                                                           print(file.read())
                                                           time.sleep(2)
-                                                          print("the end")                       
+                                                          print("the end") 
+    time.sleep(2)
+    print("thank you for playing my game , it's barely anything but i tried")
+    time.sleep(2)                                                              
+    Q=input("how was your experience in the cities?  ")
+    B=input("what was your favourite city so far  ")
+    time.sleep(2)
+    print("very well , have a lovely day!")
+
+
+    data_to_append=[str(A),str(a) , "full", str(B), Q]
+    with open("DATA.csv", "a"  , newline="") as csvfile:
+        csvwriter =csv.writer(csvfile)
+        csvwriter.writerow(data_to_append)
+        csvfile.close
+    dataframe=  pd.read_csv("DATA.csv")
+    print("the data collected : "
+           , dataframe)
+    
+    
+    y = np.array([40, 40, 20,])
+    mylabels = ["Aigis", "Fortuna", "Windrise",]
+
+    plt.pie(y, labels = mylabels)
+    plt.show() 
+
+
+    x = np.array(["pleasant",  "unpleasant",  "neutral"])
+
+
+    y = np.array([5,0,3])
+    plt.xlabel("Average experience")
+    plt.ylabel("approximate number of opinions")
+    plt.plot(x, y)
+    plt.show()
+
+
